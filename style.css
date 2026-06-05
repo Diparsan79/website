@@ -35,6 +35,11 @@ body {
     color: var(--color-text);
     font-family: var(--font-body);
     line-height: 1.7;
+    background-image:
+        linear-gradient(var(--color-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-attachment: fixed;
 }
 
 .identity-name {
@@ -218,3 +223,18 @@ body {
     from { opacity: 0; transform: translateY(-4px);}
     to { opacity: 1; transform: translateY(0);}
 }
+
+.lab-section {
+    margin-bottom: var(--space-md);
+}
+
+.lab-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-amber);
+    margin-bottom: var(--space-xs);
+}
+
