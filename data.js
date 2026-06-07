@@ -33,3 +33,12 @@ const entries = [
 
     }   
 ];
+
+const landing = `
+    <div class="landing">
+        <p class="landing-intro">I'm Diparsan Pathak -- A passionate programmer from Bharatpur, Nepal.</p>
+        <p>16 year-old focused on CS & Mathematics. Building something new and learning everyday.</p>
+        <p>Browse the <span class="landing-link" data-view="journal">journal</span> for my raw thoughts and <span class="landing-link" data-view="lab-note">Lab note</span> for my technical journey. </p>
+    </div>
+`;
+ 

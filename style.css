@@ -238,3 +238,39 @@ body {
     margin-bottom: var(--space-xs);
 }
 
+/* NAV */
+
+.side-nav {
+    margin-top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted);
+    cursor: pointer;
+    text-align: left;
+    padding: var(--space-xs) 0;
+    transition: color 0.15s ease;
+}
+
+.nav-btn:hover {
+    color: var(--color-accent);
+    border-left: 2px solid var(--color-accent);
+    padding-left: var(--space-sm);
+}
+
+
+/* LANDING PAGE */
+
+.landing {
+    max-width: 520px;
+    padding-top: var(--space-lg);
+}

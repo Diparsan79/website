@@ -1,11 +1,35 @@
 const feed = document.getElementById('feed');
+const navBtns = document.querySelectorAll('.nav-btn');
 
-function renderEntries(filter = 'all') {
+function showLanding() {
+  feed.innerHTML = landing;
+  feed.classList.remove('grid-bg');
+
+  document.querySelectorAll('.landing-link').forEach(Link => {
+    link.addEventListener('click', ()=> {
+      const view = link.dataset.view;
+      setActiveNav(view);
+      showFeed(view);
+    });
+  });
+}
+
+function showFeed(filter) {
+  feed.classList.add('grid-bg');
+  renderEntries(filter);
+}
+
+function setActiveNavv(view) {
+  navBtns.forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[data-view="${view}"]`).classList.add('active');
+}
+
+function renderEntries(filter= 'all') {
   feed.innerHTML = '';
 
   const filtered = filter === 'all'
-    ? entries
-    : entries.filter(e => e.type === filter);
+  ? entries
+  : entries.filter(e => e.type === filter);
 
   filtered.forEach(entry => {
     const article = document.createElement('article');
@@ -23,33 +47,45 @@ function renderEntries(filter = 'all') {
         ${entry.body}
       </div>
     `;
-
+    
     feed.appendChild(article);
-  });
 
+  });
   attachExpandListeners();
 }
+
 function attachExpandListeners() {
-    const allEntries = document.querySelectorAll('.entry');
+  const allEntries = document.querySelectorAll('.entry');
 
-    allEntries.forEach(entry => {
-        entry.querySelector('.entry-body').computedStyleMap.display = 'none';
+  allEntries.forEach(entry => {
+    entry.querySelector('.entry-body').style.display = 'none';
 
-        entry.addEventListener('click', () => {
-            const isExpanded = entry.classList.contains('expanded');
+    entry.addEventListener('click', () => {
+      const isExpanded = entry.classList.contains('expanded');
 
-            allEntries.forEach(e => {
-              e.classList.remove('expanded');
-              e.querySelector('.entry-body').style.display = 'none';
-            });
+      allEntries.forEach(e => {
+        e.classList.remove('expanded');
+        e.querySelector('.entry-body').style.display = 'none';
+      });
 
-            if (!isExpanded) {
-              entry.classList.add('expanded');
-              entry.querySelector('.entry-body').style.display = 'block';
-            }
-            
-        });
+      if (!isExpanded) {
+        entry.classList.add('expanded');
+        entry.querySelector('.entry-body').style.display ='block'; 
+      }
     });
+  });
 }
 
-renderEntries();
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    setActiveNav(view);
+    if (view ==='home') {
+      showLanding();
+    } else {
+      showFeed(view);
+    }
+  });
+});
+
+showLanding();
