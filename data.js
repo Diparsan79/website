@@ -2,7 +2,7 @@ const entries = [
     {
         id: 1,
         type: 'journal',
-        date: '2025=06-03',
+        date: '2025-06-03',
         title: 'Started the notebook',
         preview: 'First day of building this in public',
         body: `
@@ -21,7 +21,7 @@ const entries = [
                 <span class="lab-label">objective</span>
                 <p>Build a good layout of my website using semantic HTML.</p>
             </div>
-            <div class="lab-section>
+            <div class="lab-section">
                 <span class="lab-label">ibservation</span>
                 <p>IDK what to write here so im js typing random ahh words for now.</p>
             </div>
