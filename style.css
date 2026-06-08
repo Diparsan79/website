@@ -35,9 +35,6 @@ body {
     color: var(--color-text);
     font-family: var(--font-body);
     line-height: 1.7;
-    background-image:
-        linear-gradient(var(--color-border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
     background-size: 25px 25px;
     background-attachment: fixed;
 }
@@ -82,28 +79,33 @@ body {
 
 .entry-title {
     font-family: var(--font-body);
-    font-size: 1.1rem;
-    font-weight: normal;
+    font-size: 1rem;
+    font-weight: bold;
     color: var(--color-text);
     margin-top: var(--space-xs);
 }
 
 .entry-preview {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-muted);
     margin-top: var(--space-xs);
+    line-height: 1.5;
 }
 
 .entry-body {
-    font-size: 0.95rem;
+    display: none;
+    font-size: 0.9rem;
+    line-height: 1.75;
     color: var(--color-text);
     margin-top: var(--space-md);
     padding-top: var(--space-md);
     border-top: 1px solid var(--color-border);
+    animation: fadeIn 0.2s ease;
 }
 
 .entry-body p {
     margin-bottom: var(--space-md);
+    font-size: 0.9rem
 }
 
 .layout {
@@ -273,4 +275,68 @@ body {
 .landing {
     max-width: 520px;
     padding-top: var(--space-lg);
+}
+
+.landing p {
+    margin-bottom: var(--space-lg);
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.landing-link:hover {
+    opacity: 0.7;
+}
+
+
+/* grid pattern */
+
+body {
+    background-image: none;
+}
+
+.grid-bg {
+    background-image:
+        linear-gradient(var(--color-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+
+}
+
+/* feed */
+
+.feed-header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.feed-header h1  {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted);
+    font-weight: normal;
+}
+
+.feed-count {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-muted);
+    margin-top: var(--space-xs);
+}
+
+
+/* panel footer */
+
+.panel-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-border);
 }

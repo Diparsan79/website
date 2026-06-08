@@ -28,8 +28,18 @@ function renderEntries(filter= 'all') {
   feed.innerHTML = '';
 
   const filtered = filter === 'all'
-  ? entries
-  : entries.filter(e => e.type === filter);
+    ? entries
+    : entries.filter(e => e.type === filter);
+  
+  const label = filter ==='all' ? 'all entries' : filter ==='journal' ? 'journal' : 'lab notes';
+
+  feed.innerHTML = `
+    <div class="feed-header">
+      <h1>${label}</h1>
+      <span class="feed-count">${filtered.length} ${filtered.length === 1 ? 'entry' : 'entries'}</span>
+    </div>
+  `;
+
 
   filtered.forEach(entry => {
     const article = document.createElement('article');
