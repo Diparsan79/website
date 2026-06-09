@@ -41,4 +41,12 @@ const landing = `
         <p>Browse the <span class="landing-link" data-view="journal">journal</span> for my raw thoughts and <span class="landing-link" data-view="lab-note">Lab note</span> for my technical journey. </p>
     </div>
 `;
+
+const status = {
+    working: 'engineering note',
+    mood: 'focused',
+    updated: '2025-06-03'
+};
+
+
  

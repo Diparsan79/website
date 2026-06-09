@@ -27,9 +27,7 @@ function setActiveNavv(view) {
 function renderEntries(filter= 'all') {
   feed.innerHTML = '';
 
-  const filtered = filter === 'all'
-    ? entries
-    : entries.filter(e => e.type === filter);
+  const filtered = filter === 'all' ? entries : entries.filter(e => e.type === filter);
   
   const label = filter ==='all' ? 'all entries' : filter ==='journal' ? 'journal' : 'lab notes';
 
@@ -98,4 +96,5 @@ navBtns.forEach(btn => {
   });
 });
 
+document.getElementById('status-working').textContent = status.working;
 showLanding();

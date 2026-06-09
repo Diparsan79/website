@@ -340,3 +340,42 @@ body {
     letter-spacing: 0.12em;
     color: var(--color-border);
 }
+
+.identity-panel .identity-meta span:last-child {
+    font-size: 0.85em;
+    color: var(--color-text);
+    margin-top: 2px;
+}
+
+.identity-name {
+    margin-bottom: var(--space-xl);
+}
+
+/* status */
+
+.status-block {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-amber);
+    animation: pulse 2.5s infinite;
+    margin: 2px 0;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity : 1; }
+    50% {opacity: 0.3; }
+    }
+
+#status-working {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    line-height: 1.4;
+}
