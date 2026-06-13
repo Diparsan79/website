@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="layout">
-        <aside class="identity-panel">
+        <aside class="identity-panel" aria-label="Identity panel">
             <div class="identity-name">DIPARSAN</div>
             <div class="identity-meta">
                 <span class="label">location</span>
@@ -28,7 +28,7 @@
                 <span class ="status-dot"></span>
                 <span id="status-working"></span>
             </div>
-            <nav class="side-nav">
+            <nav class="side-nav" aria-label="Main navigation">
                 <button class="nav-btn active" data-view="home">home</button>
                 <button class="nav-btn" data-view="journal">journal</button>
                 <button class="nav-btn" data-view="lab-note">Lab notes</button>
@@ -38,7 +38,7 @@
                 <span>made with Love</span>
             </div>
         </aside>
-        <main class = "feed" id="feed">
+        <main class = "feed" id="feed" aria-live="polite" aria-label="Content feed">
         </main>
     </div>
     <script src="data.js"></script>

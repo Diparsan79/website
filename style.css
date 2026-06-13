@@ -442,3 +442,25 @@ body {
         max-width: 100%;
     }
 }
+
+.entry:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+.entry.lab-note:focus {
+    outline-color: var(--color-amber);
+}
+
+.nav-btn:focus {
+    outline: 2px solid var(--color-accent);
+}
+
+@media (prefers-reduced-motion: focus) {
+    .entry-body {
+        animation: none;
+    }
+    .status-dot {
+        animation: none;
+    }
+}

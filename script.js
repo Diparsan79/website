@@ -70,15 +70,28 @@ function attachExpandListeners() {
 
     entry.addEventListener('click', () => {
       const isExpanded = entry.classList.contains('expanded');
+    
+    entry.setAttribute('tabindex', '0');
+    entry.setAttribute('role', 'button');
+    entry.setAttribute('aria-expanded', 'false');
+
+    entry.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        entry.click();
+      }
+    });
 
       allEntries.forEach(e => {
         e.classList.remove('expanded');
         e.querySelector('.entry-body').style.display = 'none';
+        e.setAttribute('aria-expanded', 'false');
       });
 
       if (!isExpanded) {
         entry.classList.add('expanded');
-        entry.querySelector('.entry-body').style.display ='block'; 
+        entry.querySelector('.entry-body').style.display ='block';
+        entry.setAttribute('aria-expanded', 'true');
       }
     });
   });
