@@ -14,8 +14,23 @@ function showLanding() {
   });
 }
 
-function showFeed(filter) {
+function showFeed(filter = 'all') {
   feed.classList.add('grid-bg');
+  feed.innerHTML = `
+  <div class="filter-bar">
+    <button class="filter-btn" ${filter == 'all' ? 'active' : ''}" data-filter="all">all</button>
+    <button class="filter-btn ${filter === 'journal' ? 'active' : ''}" data-filter="journal">journal</button
+    <button class=filter-btn ${filter ==='lab-note' ? 'active' : ''}" data-filter="lab-note">lab notes</button>
+  </div>
+`;
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderEntries(btn.dataset.filter);
+  });
+});
   renderEntries(filter);
 }
 
@@ -25,12 +40,17 @@ function setActiveNavv(view) {
 }
 
 function renderEntries(filter= 'all') {
+  const existingHeader = feed.querySelector('.feed-header');
+  if (existingHeader) existingHeader.remove()
+    
   feed.innerHTML = '';
 
   const filtered = filter === 'all' ? entries : entries.filter(e => e.type === filter);
   
   const label = filter ==='all' ? 'all entries' : filter ==='journal' ? 'journal' : 'lab notes';
 
+  const header = document.createElement('div');
+  header.className = 'feed-header';
   feed.innerHTML = `
     <div class="feed-header">
       <h1>${label}</h1>
@@ -38,7 +58,26 @@ function renderEntries(filter= 'all') {
     </div>
   `;
 
+  const filterBar = feed.querySelector('.filter-bar');
+  if (filterBar) {
+    filterBar.insertAdjacentElement('afterend', header);
+  } else {
+    feed.prepend(header);
+  }
+  const existingEntries = feed.querySelectorAll('.entry, .empty-state');
+  existingEntries.forEach(e => e.remove());
 
+  if (filtered.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.innerHTML = `
+      <p>nothing here yet.</p>
+      <span>entries will appear as you add them to data.js</span>
+    `;
+    feed.appendChild(empty);
+    return;
+  }
+  
   filtered.forEach(entry => {
     const article = document.createElement('article');
     article.className = `entry ${entry.type}`;
