@@ -5,7 +5,7 @@ function showLanding() {
   feed.innerHTML = landing;
   feed.classList.remove('grid-bg');
 
-  document.querySelectorAll('.landing-link').forEach(Link => {
+  document.querySelectorAll('.landing-link').forEach(link => {
     link.addEventListener('click', ()=> {
       const view = link.dataset.view;
       setActiveNav(view);
@@ -18,9 +18,9 @@ function showFeed(filter = 'all') {
   feed.classList.add('grid-bg');
   feed.innerHTML = `
   <div class="filter-bar">
-    <button class="filter-btn" ${filter == 'all' ? 'active' : ''}" data-filter="all">all</button>
-    <button class="filter-btn ${filter === 'journal' ? 'active' : ''}" data-filter="journal">journal</button
-    <button class=filter-btn ${filter ==='lab-note' ? 'active' : ''}" data-filter="lab-note">lab notes</button>
+    <button class="filter-btn ${filter ==='all' ? 'active' : ''}" data-filter="all">Home</button>
+    <button class="filter-btn ${filter === 'journal' ? 'active' : ''}" data-filter="journal">journal</button>
+    <button class="filter-btn ${filter === 'lab-note' ? 'active' : ''}" data-filter="lab-note">lab notes</button>
   </div>
 `;
 
@@ -34,7 +34,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   renderEntries(filter);
 }
 
-function setActiveNavv(view) {
+function setActiveNav(view) {
   navBtns.forEach(btn => btn.classList.remove('active'));
   document.querySelector(`[data-view="${view}"]`).classList.add('active');
 }
@@ -87,8 +87,12 @@ function renderEntries(filter= 'all') {
       <div class="entry-header">
         <span class="entry-type">${entry.type}</span>
         <span class="entry-date">${entry.date}</span>
+        <span class="entry-readtime">${readingtime(entry.body)}</span>
         <h2 class="entry-title">${entry.title}</h2>
         <p class="entry-preview">${entry.preview}</p>
+        <div class="entry-tags">
+          ${entry.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
       </div>
       <div class="entry-body">
         ${entry.body}
@@ -99,6 +103,7 @@ function renderEntries(filter= 'all') {
 
   });
   attachExpandListeners();
+  attachTagListeners();
 }
 
 function attachExpandListeners() {
@@ -134,8 +139,40 @@ function attachExpandListeners() {
       }
     });
   });
+  attachTagListeners();
 }
 
+function attachTagListeners() {
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const value = tag.textContent;
+      filterByTag(value);
+    });
+  });
+}
+
+function filterByTag(tag) {
+  const filtered = entries.filter(e => e.tags.includes(tag));
+
+  const existingEntries = feed.querySelectorAll('.entry, .empty-state, .feed-header');
+  existingEntries.forEach(e => e.remove());
+
+  const header = document.createElement('div');
+  header.className = 'feed-header';
+  header.innerHTML = `
+    <h1>tag : ${tag}</h1>
+    <span class="feed-count">${filtered.length} ${filtered.length === 1 ? 'entry' : 'entries'}</span>
+  `;
+  feed.appendChild(header);
+}
+
+function readingtime(body) {
+  const text = body.replace(/<[^>]*>/g, '');
+  const words = text.trim().split(/\s+/).length;
+  const mins = Math.ceil(words / 200);
+  return `${mins} min read`;
+}
 navBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const view = btn.dataset.view;

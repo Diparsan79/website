@@ -604,3 +604,57 @@ pre code {
     font-size: 0.85rem;
     line-height: 1.6;
 }
+
+/* Tags */
+.entry-tags {
+    grid-column: 1/ -1;
+    grid-row: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 2px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tag:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.tag.active {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: rgba(26, 46, 74, 0.06);
+}
+
+/* reading time */
+.entry-readtime {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--color-border);
+    letter-spacing: 0.08em;
+    margin-top: var(--space-xs);
+}
+
+.entry-date {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-muted);
+}
